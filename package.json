@@ -1,14 +1,14 @@
 {
-  "name": "animes-api",
+  "name": "pontos-turisticos-api",
   "version": "1.0.0",
-  "description": "Projeto base de uma API com MVC",
+  "description": "Criação de uma API de Pontos turísticos com MVC",
   "keywords": [
     "nodejs",
     "javascript",
     "prisma"
   ],
   "license": "MIT",
-  "author": "Felipe Dev",
+  "author": "Nathalia Santos Ferreira",
   "type": "module",
   "main": "src/server.js",
   "scripts": {
