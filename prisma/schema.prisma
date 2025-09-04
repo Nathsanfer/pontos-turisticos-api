@@ -13,78 +13,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Anime {
-  id          Int     @id @default(autoincrement())
-  title       String
-  description String?
-  episodes    Int
-  releaseYear Int
-  studio      String
-  genres      String
-  rating      Float
-  imageUrl    String
+model PontoTuristico {
+  id        Int    @id @default(autoincrement())
+  nome      String
+  descricao String
+  regiao    Regiao
+  cidade    String
+  estado    String
+  imagemUrl String
+  nota      Float  @default(0)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  dataCriacao     DateTime @default(now())
+  dataAtualizacao DateTime @updatedAt
 
-  @@map("animes")
+  @@map("pontos_turisticos")
 }
 
-model Personagem {
-  id          Int     @id @default(autoincrement())
-  name        String
-  description String?
-  age         Int
-  power       Boolean
-  anime       String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("personagens")
-}
-
-model Collection {
-  id          Int     @id @default(autoincrement())
-  name        String  @unique
-  description String?
-  releaseYear Int
-
-  // Segundo: marcação da lista de dados da tabela dependente
-  cards Card[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("collections")
-}
-
-model Card {
-  id            Int     @id @default(autoincrement())
-  name          String  @unique
-  rarity        String
-  attackPoints  Int
-  defensePoints Int
-  imageUrl      String?
-
-  // Primeiro: configuração da tabela dependente
-  collectionId Int
-  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("cards")
-}
-
-model User {
-  id       Int    @id @default(autoincrement())
-  name     String
-  email    String @unique
-  password String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("users")
+enum Regiao {
+  Norte
+  Nordeste
+  CentroOeste
+  Sudeste
+  Sul
 }
